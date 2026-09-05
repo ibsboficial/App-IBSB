@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 44">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2f8fe6"/>
+      <stop offset="100%" stop-color="#0f5fb0"/>
+    </linearGradient>
+  </defs>
+  <!--
+    PLACEHOLDER — substitua este arquivo pela logo oficial da IBSB
+    (mantenha o mesmo nome de arquivo para que o app atualize sozinho)
+  -->
+  <rect x="1" y="1" width="42" height="42" rx="12" fill="url(#bg)"/>
+  <path d="M20 8h4v10h10v4H24v10h-4V22H10v-4h10z" fill="#ffffff"/>
+  <circle cx="33" cy="9" r="4.4" fill="#e9b34a"/>
+  <text x="54" y="28" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="800" fill="#0a2e57" letter-spacing="1">IBSB</text>
+  <text x="55" y="40" font-family="Inter, Arial, sans-serif" font-size="6.5" font-weight="600" fill="#6b82a0" letter-spacing="0.4">IGREJA BATISTA DO SEVILHA B</text>
+</svg>

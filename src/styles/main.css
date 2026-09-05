@@ -1,0 +1,10 @@
+/* ============================================================
+   IBSB — Estilos (agregador)
+   ============================================================ */
+@import './tokens.css';
+@import './base.css';
+@import './components.css';
+@import './home.css';
+@import './pages.css';
+@import './detail.css';
+@import './admin.css';

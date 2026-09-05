@@ -1,0 +1,51 @@
+{
+  "name": "IBSB — Igreja Batista do Sevilha B",
+  "short_name": "IBSB",
+  "description": "Aplicativo oficial da Igreja Batista do Sevilha B. Cultos, eventos, pregações, devocionais e pedidos de oração.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f8fc",
+  "theme_color": "#1677d6",
+  "lang": "pt-BR",
+  "categories": ["lifestyle", "social", "utilities"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Próximos cultos",
+      "short_name": "Cultos",
+      "url": "./#/cultos",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Pedido de oração",
+      "short_name": "Oração",
+      "url": "./#/oracao"
+    },
+    {
+      "name": "Pregações",
+      "short_name": "Pregações",
+      "url": "./#/pregacoes"
+    }
+  ]
+}
