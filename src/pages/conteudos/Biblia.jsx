@@ -1,76 +1,83 @@
 // ============================================================
-// IBSB — Bíblia
-// Interface preparada para futura integração com uma API
-// bíblica (ex.: Bible API). Nenhum conteúdo protegido é usado.
+// IBSB — Bíblia (tela principal)
+// Fonte: BLIVRE.json. Antigo e Novo Testamento, livros e atalhos.
 // ============================================================
 
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PageHeader from '../../components/ui/PageHeader';
 import Icon from '../../components/ui/Icon';
+import { EmptyState, Spinner } from '../../components/ui/UI';
+import { useBible, useBibleFavorites } from '../../hooks/useBible';
+import { BOOK_TESTAMENTS, BIBLE_LABEL, getBooks } from '../../data/bible';
 
 export default function Biblia() {
-  const [query, setQuery] = useState('');
+  const { ready, error } = useBible();
+  const favorites = useBibleFavorites();
 
   return (
     <>
-      <PageHeader title="Bíblia" subtitle="Leitura e busca bíblica" />
+      <PageHeader title="Bíblia" subtitle={BIBLE_LABEL} />
 
       <section className="section">
-        <div className="live-panel">
-          <div className="bible-intro">
-            <span className="bible-icon">
-              <Icon name="bible" size={36} />
-            </span>
-            <h2>A Palavra de Deus</h2>
-            <p className="muted" style={{ maxWidth: 460, margin: '0 auto' }}>
-              Em breve você poderá ler e buscar qualquer passagem bíblica aqui no aplicativo,
-              integrada a uma API bíblica gratuita e licenciada.
+        <div className="bible-hero">
+          <span className="bible-hero-icon">
+            <Icon name="bible" size={34} />
+          </span>
+          <div className="bible-hero-text">
+            <h2>Bíblia Livre</h2>
+            <p className="muted small">
+              Leia, pesquise e favorite versículos. Texto integral da {BIBLE_LABEL}.
             </p>
           </div>
-
-          <div className="detail-body" style={{ maxWidth: '100%', padding: '0 20px 24px' }}>
-            <div className="field">
-              <label htmlFor="bible-search">Buscar passagem</label>
-              <input
-                id="bible-search"
-                className="input"
-                type="text"
-                placeholder="Ex.: João 3.16"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                disabled
-              />
-              <p className="form-hint">
-                Busca desabilitada por enquanto — será ativada com a integração da API bíblica.
-              </p>
-            </div>
-
-            <div className="bible-options">
-              <div className="bible-option" style={{ pointerEvents: 'none' }}>
-                <span className="bible-option-icon"><Icon name="book" size={20} /></span>
-                <span>
-                  <strong>Planos de leitura</strong>
-                  <small>Em breve</small>
-                </span>
-              </div>
-              <div className="bible-option" style={{ pointerEvents: 'none' }}>
-                <span className="bible-option-icon"><Icon name="sparkles" size={20} /></span>
-                <span>
-                  <strong>Versículo do dia</strong>
-                  <small>Em breve</small>
-                </span>
-              </div>
-              <div className="bible-option" style={{ pointerEvents: 'none' }}>
-                <span className="bible-option-icon"><Icon name="search" size={20} /></span>
-                <span>
-                  <strong>Busca por palavra</strong>
-                  <small>Em breve</small>
-                </span>
-              </div>
-            </div>
+          <div className="bible-hero-actions">
+            <Link to="/biblia/pesquisa" className="btn btn-primary">
+              <Icon name="search" size={16} /> Pesquisar
+            </Link>
+            <Link to="/biblia/favoritos" className="btn btn-outline">
+              <Icon name="heart" size={16} /> Favoritos{favorites.length ? ` (${favorites.length})` : ''}
+            </Link>
+            <Link to="/biblia/sobre" className="btn btn-ghost">
+              Sobre a Bíblia
+            </Link>
           </div>
         </div>
       </section>
+
+      {!ready && !error && <Spinner label="Carregando a Bíblia..." />}
+
+      {error && (
+        <EmptyState
+          icon="book"
+          title="Não foi possível carregar a Bíblia"
+          text={error.message}
+        />
+      )}
+
+      {ready &&
+        BOOK_TESTAMENTS.map((t) => {
+          const books = getBooks(t.key);
+          return (
+            <section className="section" key={t.key}>
+              <div className="bible-testament-head">
+                <h3 className="section-title">{t.label}</h3>
+                <span className="muted small">{books.length} livros</span>
+              </div>
+              <div className="bible-books">
+                {books.map((b) => (
+                  <Link
+                    key={b.abbrev}
+                    to={`/biblia/${encodeURIComponent(b.abbrev)}`}
+                    className="bible-book"
+                  >
+                    <span className="bible-book-abbrev">{b.abbrev}</span>
+                    <span className="bible-book-name">{b.displayName}</span>
+                    <span className="bible-book-meta">{b.chapterCount} capítulos</span>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          );
+        })}
     </>
   );
 }

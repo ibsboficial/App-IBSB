@@ -23,6 +23,11 @@ import Devocionais from './pages/conteudos/Devocionais';
 import DevocionalDetail from './pages/conteudos/DevocionalDetail';
 import AoVivo from './pages/conteudos/AoVivo';
 import Biblia from './pages/conteudos/Biblia';
+import BibliaLivro from './pages/conteudos/BibliaLivro';
+import BibliaCapitulo from './pages/conteudos/BibliaCapitulo';
+import BibliaPesquisa from './pages/conteudos/BibliaPesquisa';
+import BibliaFavoritos from './pages/conteudos/BibliaFavoritos';
+import BibliaSobre from './pages/conteudos/BibliaSobre';
 import Igreja from './pages/igreja/Igreja';
 import Sobre from './pages/igreja/Sobre';
 import Redes from './pages/igreja/Redes';
@@ -77,6 +82,11 @@ export default function App() {
               <Route path="/devocionais/:id" element={<DevocionalDetail />} />
               <Route path="/ao-vivo" element={<AoVivo />} />
               <Route path="/biblia" element={<Biblia />} />
+              <Route path="/biblia/pesquisa" element={<BibliaPesquisa />} />
+              <Route path="/biblia/favoritos" element={<BibliaFavoritos />} />
+              <Route path="/biblia/sobre" element={<BibliaSobre />} />
+              <Route path="/biblia/:abbrev" element={<BibliaLivro />} />
+              <Route path="/biblia/:abbrev/:chapter" element={<BibliaCapitulo />} />
               <Route path="/igreja" element={<Igreja />} />
               <Route path="/sobre" element={<Sobre />} />
               <Route path="/redes" element={<Redes />} />
