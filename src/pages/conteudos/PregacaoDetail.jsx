@@ -10,6 +10,7 @@ import Icon from '../../components/ui/Icon';
 import { EmptyState, Chip } from '../../components/ui/UI';
 import { SermonCard } from '../../components/ibsb/cards';
 import { formatFull, relativeDay } from '../../utils/dates';
+import { toEmbedUrl } from '../../utils/youtube';
 
 export default function PregacaoDetail() {
   const { id } = useParams();
@@ -53,7 +54,7 @@ export default function PregacaoDetail() {
             <div className="live-player" style={{ aspectRatio: '16/9', borderRadius: 'var(--radius-md)' }}>
               <iframe
                 className="video-frame"
-                src={sermon.videoUrl}
+                src={toEmbedUrl(sermon.videoUrl)}
                 title={sermon.title}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
