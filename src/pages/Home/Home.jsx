@@ -16,6 +16,7 @@ const SHORTCUTS = [
   { to: '/eventos', icon: 'calendar', label: 'Eventos', tone: '#6a5bd8' },
   { to: '/oracao', icon: 'prayer', label: 'Oração', tone: '#d96ba6' },
   { to: '/contato', icon: 'chat', label: 'Contato', tone: '#16a37e' },
+  { to: '/galeria', icon: 'image', label: 'Galeria', tone: '#6a5bd8' },
 ];
 
 export default function Home() {

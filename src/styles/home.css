@@ -138,12 +138,14 @@
 /* --- Atalhos ------------------------------------------------------ */
 .shortcuts-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 10px;
 }
 
 @media (max-width: 480px) {
   .shortcuts-grid { gap: 8px; }
+  .shortcut { padding: 12px 4px 10px; }
+  .shortcut-icon { width: 40px; height: 40px; border-radius: 12px; }
 }
 
 .shortcut {
