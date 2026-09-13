@@ -138,22 +138,17 @@
 /* --- Atalhos ------------------------------------------------------ */
 .shortcuts-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
-}
-
-@media (max-width: 480px) {
-  .shortcuts-grid { gap: 8px; }
-  .shortcut { padding: 12px 4px 10px; }
-  .shortcut-icon { width: 40px; height: 40px; border-radius: 12px; }
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .shortcut {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 14px 6px 12px;
+  gap: 6px;
+  min-width: 0;
+  padding: 10px 3px 9px;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
@@ -164,9 +159,10 @@
 .shortcut:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 
 .shortcut-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 14px;
+  width: 100%;
+  max-width: 46px;
+  aspect-ratio: 1 / 1;
+  border-radius: 30%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -174,7 +170,23 @@
   box-shadow: var(--shadow-brand);
 }
 
-.shortcut-label { font-size: var(--fs-2xs); font-weight: var(--fw-semibold); color: var(--ink-soft); }
+.shortcut-icon svg { width: 54%; height: 54%; }
+
+.shortcut-label {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: clamp(0.58rem, 2.4vw, 0.72rem);
+  font-weight: var(--fw-semibold);
+  line-height: 1.15;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .shortcuts-grid { gap: 5px; }
+  .shortcut { padding: 9px 2px 8px; }
+}
 
 /* --- Última pregação ------------------------------------------------ */
 .home-feature {
